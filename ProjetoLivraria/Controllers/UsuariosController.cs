@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using LivrariasApp.API.Models;
+using LivrariasApp.API.Services;
 using LivrariasApp.Domain.Exceptions;
 using LivrariasApp.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Http;
@@ -146,6 +148,45 @@ namespace ProjetoLivraria.Controllers
                 //HTTP 500 (INTERNAL SERVER ERROR)
                 return StatusCode(500, new { message = e.Message });
             }
-        }        
+        }
+
+        [HttpPost]
+        [Route("autenticar")] //ENDPOINT: api/usuarios/autenticar
+        [ProducesResponseType(typeof(AutenticarUsuarioResponseModel), 200)]
+        public IActionResult Autenticar(AutenticarUsuarioRequestModel model)
+        {
+            //capturando os dados do usuário "mockado"
+            var usuario = Usuarios.MockUsuario();
+
+            //verificando se o dto confere com os dados do usuário
+            if (usuario.Email.Equals(model.Email) && usuario.Senha.Equals(model.Senha))
+            {
+                //criando os dados do usuário autenticado
+                var response = new AutenticarUsuarioResponseModel
+                {
+                    Id = usuario.Id,
+                    Nome = usuario.Nome,
+                    Email = usuario.Email,
+                    DataHoraAcesso = DateTime.Now,
+                    AccessToken = JwtBearerService.GenerateToken(usuario.Id.Value),
+                    DataHoraExpiracao = DateTime.Now.AddHours(Convert.ToDouble(JwtBearerService.ExpirationInHours))
+                };
+
+                //retornando os dados do usuário autenticado
+                return StatusCode(200, response);
+            }
+            else
+            {
+                //retornar acesso negado (401 - UNAUTHORIZED)
+                return StatusCode(401, new { message = "Acesso negado. Usuário inválido." });
+            }
+        }
+
+        [HttpGet]
+        [Route("obter-dados")]
+        public IActionResult ObterDados()
+        {
+            return Ok();
+        }
     }
 }

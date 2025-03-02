@@ -11,7 +11,7 @@ namespace LivrariasApp.Domain.Interfaces.Services
     {
         Genero Cadastrar(Genero genero);
         Genero Atualizar(Genero genero);
-        Genero Excluir(Genero genero);
+        Genero Excluir(Guid id);
         Genero? ConsultarPorId(Guid id);
         List<Genero> ConsultarTodos();
     }

@@ -37,39 +37,51 @@ namespace LivrariasApp.Domain.Services
         {
             #region Buscar o genero no banco de dados através do ID
 
-            //var editoraEdicao = _editoraRepository.GetById(editora.Id);
-            //DomainException.When(editoraEdicao == null,
-            //    "A editora é inválida para edição. Verifique o ID informado.");
+            var generoEdicao = _generoRepository.GetById(genero.Id);
+            DomainException.When(generoEdicao == null,
+                "O gênero é inválido para edição. Verifique o ID informado.");
 
-            //#endregion
+            #endregion
 
-            //#region Alterar os dados da editora
+            #region Alterar os dados do genero
 
-            //editoraEdicao.Nome = editora.Nome;
-            //editoraEdicao.UltimaAtualizacaoEm = DateTime.Now;
+            generoEdicao.Nome = genero.Nome;
+            generoEdicao.UltimaAtualizacaoEm = DateTime.Now;
 
-            //_editoraRepository.Update(editoraEdicao);
+            _generoRepository.Update(generoEdicao);
 
-            //return editoraEdicao;
-
-            return genero;
+            return generoEdicao;
 
             #endregion
         }
 
-        public Genero Excluir(Genero genero)
+        public Genero Excluir(Guid id)
         {
-            throw new NotImplementedException();
+            #region Buscar o genero no banco de dados através do ID
+
+            var generoExclusao = _generoRepository.GetById(id);
+            DomainException.When(generoExclusao == null,
+                "O gênero é inválido para exclusão. Verifique o ID informado.");
+
+            #endregion
+
+            #region Excluir o gênero
+
+            _generoRepository.Delete(generoExclusao);
+
+            return generoExclusao;
+
+            #endregion
         }
 
         public Genero? ConsultarPorId(Guid id)
         {
-            throw new NotImplementedException();
+            return _generoRepository.GetById(id);
         }
 
         public List<Genero> ConsultarTodos()
         {
-            throw new NotImplementedException();
+            return _generoRepository.GetAll();
         }
     }
 }

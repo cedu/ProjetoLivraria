@@ -25,7 +25,8 @@ namespace LivrariasApp.API.Extensions
             services.AddScoped<IEditoraRepository, EditoraRepository>();
 
             //injeção de dependência de gênero
-
+            services.AddScoped<IGeneroDomainService, GeneroDomainService>();
+            services.AddScoped<IGeneroRepository, GeneroRepository>();
 
 
             return services;

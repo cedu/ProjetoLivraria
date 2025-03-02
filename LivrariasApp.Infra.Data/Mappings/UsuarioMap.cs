@@ -26,7 +26,7 @@ namespace LivrariasApp.Infra.Data.Mappings
             builder.Property(u => u.UltimaAtualizacaoEm).IsRequired();
 
             //mapeamento de índices
-            builder.HasIndex(c => c.Email).IsUnique();
+            builder.HasIndex(u => u.Email).IsUnique();
 
             builder.HasMany(u => u.Livros)
                 .WithOne(l => l.Usuario)

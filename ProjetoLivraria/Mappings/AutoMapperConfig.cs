@@ -22,6 +22,11 @@ namespace LivrariasApp.API.Mappings
             CreateMap<EditorasPostRequestModel, Editora>();
             CreateMap<EditorasPutRequestModel, Editora>();
             CreateMap<Editora, EditorasGetResponseModel>();
+
+            //Mapeamento Genero
+            CreateMap<GenerosPostRequestModel, Genero>();
+            CreateMap<GenerosPutRequestModel, Genero>();
+            CreateMap<Genero, GenerosGetResponseModel>();
         }
     }
 }
