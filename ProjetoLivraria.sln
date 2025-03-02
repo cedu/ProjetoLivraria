@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35707.178
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LivrariasApp.API", "ProjetoLivraria\LivrariasApp.API.csproj", "{F3950605-705A-4289-9EE7-8CCC30C6143D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - API", "1 - API", "{F15895C4-BFB8-4A5C-8F4C-6898EC0CB2A9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - DOMAIN", "2 - DOMAIN", "{DD0D8ECD-08EA-4C71-8CC7-E3360E56E8A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LivrariasApp.Domain", "LivrariasApp.Domain\LivrariasApp.Domain.csproj", "{FDEFAF6B-8921-40D1-AD1C-5D11AF6AE034}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - INFRASTRUCTURE", "3 - INFRASTRUCTURE", "{4AF73B4B-54F6-4E24-ABD7-3C4BE07C57C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LivrariasApp.Infra.Data", "LivrariasApp.Infra.Data\LivrariasApp.Infra.Data.csproj", "{C2442BBB-DEFC-4ED4-A997-6B17DF592840}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - TDD", "4 - TDD", "{100A8CB8-CE98-4AC8-B3F8-BDC3A8C75108}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LivrariasApp.IntegrationTests", "LivrariasApp.IntegrationTests\LivrariasApp.IntegrationTests.csproj", "{53AC8AAD-01F9-4991-BE97-3BD87E419C1A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F3950605-705A-4289-9EE7-8CCC30C6143D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3950605-705A-4289-9EE7-8CCC30C6143D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3950605-705A-4289-9EE7-8CCC30C6143D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3950605-705A-4289-9EE7-8CCC30C6143D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDEFAF6B-8921-40D1-AD1C-5D11AF6AE034}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDEFAF6B-8921-40D1-AD1C-5D11AF6AE034}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDEFAF6B-8921-40D1-AD1C-5D11AF6AE034}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDEFAF6B-8921-40D1-AD1C-5D11AF6AE034}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2442BBB-DEFC-4ED4-A997-6B17DF592840}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2442BBB-DEFC-4ED4-A997-6B17DF592840}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2442BBB-DEFC-4ED4-A997-6B17DF592840}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2442BBB-DEFC-4ED4-A997-6B17DF592840}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53AC8AAD-01F9-4991-BE97-3BD87E419C1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53AC8AAD-01F9-4991-BE97-3BD87E419C1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53AC8AAD-01F9-4991-BE97-3BD87E419C1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53AC8AAD-01F9-4991-BE97-3BD87E419C1A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F3950605-705A-4289-9EE7-8CCC30C6143D} = {F15895C4-BFB8-4A5C-8F4C-6898EC0CB2A9}
+		{FDEFAF6B-8921-40D1-AD1C-5D11AF6AE034} = {DD0D8ECD-08EA-4C71-8CC7-E3360E56E8A9}
+		{C2442BBB-DEFC-4ED4-A997-6B17DF592840} = {4AF73B4B-54F6-4E24-ABD7-3C4BE07C57C4}
+		{53AC8AAD-01F9-4991-BE97-3BD87E419C1A} = {100A8CB8-CE98-4AC8-B3F8-BDC3A8C75108}
+	EndGlobalSection
+EndGlobal
