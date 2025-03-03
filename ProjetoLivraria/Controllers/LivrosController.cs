@@ -80,14 +80,70 @@ namespace ProjetoLivraria.Controllers
         [ProducesResponseType(typeof(LivrosDeleteResponseModel), 200)]
         public IActionResult Delete(Guid id)
         {
-            return Ok();
+            try
+            {
+                //excluir o livro
+                var livro = _livroDomainService.Excluir(id);
+
+                //objeto para retornar os dados da resposta
+                var response = _mapper.Map<LivrosGetResponseModel>(livro);
+                return StatusCode(200, response);
+            }
+            catch (DomainException e)
+            {
+                //HTTP 422 (UNPROCESSABLE CONTENT)
+                return StatusCode(422, new { message = e.Message });
+            }
+            catch (Exception e)
+            {
+                //HTTP 500 (INTERNAL SERVER ERROR)
+                return StatusCode(500, new { message = e.Message });
+            }
         }
 
         [HttpGet]
         [ProducesResponseType(typeof(LivrosGetResponseModel), 200)]
         public IActionResult GetAll() 
         {
-            return Ok();
+            try
+            {
+                // Consultar todos os livros
+                var livros = _livroDomainService.ConsultarTodos();
+
+                // Verificar se a lista de livros está vazia
+                if (livros == null || livros.Count == 0)
+                    return StatusCode(204);
+
+                // Lista para armazenar os responses
+                var responseList = new List<LivrosGetResponseModel>();
+
+                // Iterar sobre cada livro na lista
+                foreach (var livro in livros)
+                {
+                    // Recuperar os dados adicionais (usuário, editora, gênero) para cada livro
+                    var usuario = _usuarioDomainService.ConsultarPorId(livro.UsuarioId);
+                    var editora = _editoraDomainService.ConsultarPorId(livro.EditoraId);
+                    var genero = _generoDomainService.ConsultarPorId(livro.GeneroId);
+
+                    // Mapear o livro para o modelo de resposta
+                    var response = _mapper.Map<LivrosGetResponseModel>(livro);
+
+                    // Preencher os campos de nome
+                    response.NomeUsuario = usuario?.Nome;
+                    response.NomeEditora = editora?.Nome;
+                    response.NomeGenero = genero?.Nome;
+
+                    // Adicionar o response à lista
+                    responseList.Add(response);
+                }
+
+                return StatusCode(200, responseList);
+            }
+            catch (Exception e)
+            {
+                // HTTP 500 (INTERNAL SERVER ERROR)
+                return StatusCode(500, new { message = e.Message });
+            }
         }
 
         [HttpGet("{id}")]
@@ -104,8 +160,19 @@ namespace ProjetoLivraria.Controllers
                 if (livro == null)
                     return StatusCode(204);
 
+                // Recuperar os dados adicionais (usuário, editora, gênero)
+                var usuario = _usuarioDomainService.ConsultarPorId(livro.UsuarioId); // Assumindo que você tem um repositório para usuários
+                var editora = _editoraDomainService.ConsultarPorId(livro.EditoraId); // Assumindo que você tem um repositório para editoras
+                var genero = _generoDomainService.ConsultarPorId(livro.GeneroId); // Assumindo que você tem um repositório para gêneros
+
                 //objeto para retornar os dados da resposta
                 var response = _mapper.Map<LivrosGetResponseModel>(livro);
+
+                // Preencher os campos de nome
+                response.NomeUsuario = usuario?.Nome;
+                response.NomeEditora = editora?.Nome;
+                response.NomeGenero = genero?.Nome;
+
                 return StatusCode(200, response);
             }
             catch (Exception e)

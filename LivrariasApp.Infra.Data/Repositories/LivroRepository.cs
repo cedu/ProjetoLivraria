@@ -43,7 +43,12 @@ namespace LivrariasApp.Infra.Data.Repositories
         {
             using (var dataContext = new DataContext())
             {
-                return dataContext.Set<Livro>().ToList();
+                return dataContext.Set<Livro>()
+                    .Include(l => l.Usuario) // Inclui os dados do usuário relacionado
+                    .Include(l => l.Genero) // inclui os dados do genero relacionado
+                    .Include(l => l.Editora) // inclui os dados da editora relacionado
+                    .AsNoTracking()
+                    .ToList();
             }
         }
 
