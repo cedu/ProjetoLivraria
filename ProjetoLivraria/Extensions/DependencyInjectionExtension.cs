@@ -17,8 +17,8 @@ namespace LivrariasApp.API.Extensions
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
             //injeção de dependência de livros
-
-
+            services.AddScoped<ILivroDomainService, LivroDomainService>();
+            services.AddScoped<ILivroRepository, LivroRepository>();
 
             //injeção de dependência de editora
             services.AddScoped<IEditoraDomainService, EditoraDomainService>();

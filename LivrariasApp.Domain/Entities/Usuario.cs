@@ -12,9 +12,7 @@
         public DateTime? CadastradoEm { get; set; }
         public DateTime? UltimaAtualizacaoEm { get; set; }
 
-        public ICollection<Livro> Livros { get; set; }
-
-        //public List<Livro>? Livros { get; set; }
+        public List<Livro>? Livros { get; set; }
 
     }
 }

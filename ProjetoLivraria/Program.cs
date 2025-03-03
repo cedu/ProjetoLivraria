@@ -33,3 +33,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+//tornando a classe Program pública
+public partial class Program { }

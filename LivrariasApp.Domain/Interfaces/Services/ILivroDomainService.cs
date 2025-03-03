@@ -9,9 +9,9 @@ namespace LivrariasApp.Domain.Interfaces.Services
 {
     public interface ILivroDomainService
     {
-        void Cadastrar(Livro livro);
-        void Atualizar(Livro livro);
-        void Excluir(Guid id);
+        Livro Cadastrar(Livro livro);
+        Livro Atualizar(Livro livro);
+        Livro Excluir(Guid id);
         Livro? ConsultarPorId(Guid id);
         List<Livro> ConsultarTodos();
     }

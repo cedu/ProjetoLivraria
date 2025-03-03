@@ -1,5 +1,6 @@
 ﻿using LivrariasApp.Domain.Interfaces.Repositories;
 using LivrariasApp.Infra.Data.Contexts;
+using Microsoft.EntityFrameworkCore;
 using ProjetoLivraria.Entities;
 using System;
 using System.Collections.Generic;
@@ -50,7 +51,12 @@ namespace LivrariasApp.Infra.Data.Repositories
         {
             using (var dataContext = new DataContext())
             {
-                return dataContext.Set<Livro>().FirstOrDefault();
+                return dataContext.Set<Livro>()
+                    .Include(l => l.Usuario) // Inclui os dados do usuário relacionado
+                    .Include(l => l.Genero) // inclui os dados do genero relacionado
+                    .Include(l => l.Editora) // inclui os dados da editora relacionado
+                    .AsNoTracking() 
+                    .FirstOrDefault(l => l.Id == id);
             }
         }
     }

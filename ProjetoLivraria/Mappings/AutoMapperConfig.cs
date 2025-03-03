@@ -14,9 +14,9 @@ namespace LivrariasApp.API.Mappings
             CreateMap<Usuario, UsuariosGetResponseModel>();
 
             //Mapeamento Livros
-            //CreateMap<LivrosPostRequestModel, Livro>();
-            //CreateMap<LivrosPutRequestModel, Livro>();
-            //CreateMap<Livro, LivrosGetResponseModel>();
+            CreateMap<LivrosPostRequestModel, Livro>();
+            CreateMap<LivrosPutRequestModel, Livro>();
+            CreateMap<Livro, LivrosGetResponseModel>();
 
             //Mapeamento Editora
             CreateMap<EditorasPostRequestModel, Editora>();

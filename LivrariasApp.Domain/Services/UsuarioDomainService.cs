@@ -25,11 +25,36 @@ namespace LivrariasApp.Domain.Services
 
         public Usuario Cadastrar(Usuario usuario)
         {
+            // Validações
+            if (string.IsNullOrEmpty(usuario.Nome))
+            {
+                throw new ArgumentException("O nome do usuário não pode ser vazio.");
+            }
+
+            if (string.IsNullOrEmpty(usuario.Email))
+            {
+                throw new ArgumentException("O email do usuário não pode ser vazio.");
+            }
+
+            if (string.IsNullOrEmpty(usuario.Senha))
+            {
+                throw new ArgumentException("A senha do usuário não pode ser vazia.");
+            }
+
             usuario.Id = Guid.NewGuid();
             usuario.CadastradoEm = DateTime.Now;
             usuario.UltimaAtualizacaoEm = DateTime.Now;
 
-            _usuarioRepository.Add(usuario);
+            // Cadastro do usuário
+            try
+            {
+                _usuarioRepository.Add(usuario);
+            }
+            catch (Exception ex)
+            {
+                // Lidar com a exceção, por exemplo, registrar o erro ou lançar uma exceção personalizada
+                throw new Exception("Erro ao cadastrar o usuário.", ex);
+            }
 
             return usuario;
         }
@@ -66,7 +91,7 @@ namespace LivrariasApp.Domain.Services
 
             var usuarioExclusao = _usuarioRepository.GetById(id);
             DomainException.When(usuarioExclusao == null,
-                "A tarefa é inválida para exclusão. Verifique o ID informado.");
+                "O usuário é inválido para exclusão. Verifique o ID informado.");
 
             #endregion
 
