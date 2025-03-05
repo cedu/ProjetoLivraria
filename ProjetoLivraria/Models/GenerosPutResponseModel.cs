@@ -4,6 +4,6 @@
     {
         public Guid? Id { get; set; }
         public string? Nome { get; set; }
-        public DateTime? DataHoraUltimaAtualizacao { get; set; }
+        public DateTime? UltimaAtualizacaoEm { get; set; }
     }
 }

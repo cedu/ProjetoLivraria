@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using LivrariasApp.API.Configurations.Jwt;
 using LivrariasApp.API.Models;
 using LivrariasApp.API.Services;
 using LivrariasApp.Domain.Exceptions;
@@ -17,12 +18,14 @@ namespace ProjetoLivraria.Controllers
 
         private readonly IUsuarioDomainService _usuarioDomainService;
         private readonly IMapper _mapper;
+        private readonly JwtTokenCreator? _jwtTokenCreator;
 
         //construtor para injeção de dependências das interfaces
-        public UsuariosController(IUsuarioDomainService usuarioDomainService, IMapper mapper)
+        public UsuariosController(IUsuarioDomainService usuarioDomainService, IMapper mapper, JwtTokenCreator? jwtTokenCreator)
         {
             _usuarioDomainService = usuarioDomainService;
             _mapper = mapper;
+            _jwtTokenCreator = jwtTokenCreator;
         }
 
         [HttpPost]

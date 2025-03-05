@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LivrariasApp.Infra.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250301195744_NovosCamposTabelaLivroGeneroEditora")]
-    partial class NovosCamposTabelaLivroGeneroEditora
+    [Migration("20250305143312_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -78,14 +78,17 @@ namespace LivrariasApp.Infra.Data.Migrations
                     b.Property<string>("Autor")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(255)")
+                        .HasColumnName("AUTOR");
 
                     b.Property<DateTime>("CadastradoEm")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CADASTRADOEM");
 
                     b.Property<string>("CaminhoImagem")
                         .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasColumnType("nvarchar(500)")
+                        .HasColumnName("CAMINHOIMAGEM");
 
                     b.Property<Guid>("EditoraId")
                         .HasColumnType("uniqueidentifier");
@@ -96,19 +99,23 @@ namespace LivrariasApp.Infra.Data.Migrations
                     b.Property<string>("ISBN")
                         .IsRequired()
                         .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(20)")
+                        .HasColumnName("ISBN");
 
                     b.Property<string>("Sinopse")
                         .HasMaxLength(5000)
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("SINOPSE");
 
                     b.Property<string>("Titulo")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(255)")
+                        .HasColumnName("TITULO");
 
                     b.Property<DateTime>("UltimaAtualizacaoEm")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasColumnName("ULTIMAATUALIZACAOEM");
 
                     b.Property<Guid>("UsuarioId")
                         .HasColumnType("uniqueidentifier");

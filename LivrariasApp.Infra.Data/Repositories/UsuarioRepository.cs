@@ -1,5 +1,6 @@
 ﻿using LivrariasApp.Domain.Interfaces.Repositories;
 using LivrariasApp.Infra.Data.Contexts;
+using Microsoft.EntityFrameworkCore;
 using ProjetoLivraria.Entities;
 using System;
 using System.Collections.Generic;
@@ -9,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace LivrariasApp.Infra.Data.Repositories
 {
-    public class UsuarioRepository: IUsuarioRepository
+    public class UsuarioRepository : IUsuarioRepository
     {
         public void Add(Usuario usuario)
         {
-            using(var dataContext = new DataContext())
+            using (var dataContext = new DataContext())
             {
                 dataContext.Add(usuario);
                 dataContext.SaveChanges();
@@ -40,7 +41,7 @@ namespace LivrariasApp.Infra.Data.Repositories
 
         public Usuario? GetById(Guid id)
         {
-            using(var dataContext = new DataContext())
+            using (var dataContext = new DataContext())
             {
                 return dataContext.Set<Usuario>().FirstOrDefault();
             }
@@ -48,7 +49,7 @@ namespace LivrariasApp.Infra.Data.Repositories
 
         public List<Usuario> GetAll()
         {
-            using(var dataContext = new DataContext())
+            using (var dataContext = new DataContext())
             {
                 return dataContext.Set<Usuario>().ToList();
             }
@@ -56,7 +57,7 @@ namespace LivrariasApp.Infra.Data.Repositories
 
         public Usuario? GetByEmail(string email)
         {
-            using(var dataContext = new DataContext())
+            using (var dataContext = new DataContext())
             {
                 return dataContext.Set<Usuario>().Where(u => u.Email == email).FirstOrDefault();
             }

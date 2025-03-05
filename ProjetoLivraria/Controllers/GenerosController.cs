@@ -53,28 +53,98 @@ namespace ProjetoLivraria.Controllers
         [ProducesResponseType(typeof(GenerosPutResponseModel), 200)]
         public IActionResult Put(GenerosPutRequestModel model)
         {
-            return Ok();
+            try
+            {
+                //atualizar o genero
+                var genero = _generoDomainService.Atualizar(_mapper.Map<Genero>(model));
+
+                //objeto para retornar os dados da resposta
+                var response = _mapper.Map<GenerosGetResponseModel>(genero);
+                return StatusCode(200, response);
+            }
+            catch (DomainException e)
+            {
+                //HTTP 422 (UNPROCESSABLE CONTENT)
+                return StatusCode(422, new { message = e.Message });
+            }
+            catch (Exception e)
+            {
+                //HTTP 500 (INTERNAL SERVER ERROR)
+                return StatusCode(500, new { message = e.Message });
+            }
         }
 
         [HttpDelete("{id}")]
         [ProducesResponseType(typeof(GenerosDeleteResponseModel), 200)]
         public IActionResult Delete(Guid id)
         {
-            return Ok();
+            try
+            {
+                //excluir o genero
+                var genero = _generoDomainService.Excluir(id);
+
+                //objeto para retornar os dados da resposta
+                var response = _mapper.Map<GenerosGetResponseModel>(genero);
+                return StatusCode(200, response);
+            }
+            catch (DomainException e)
+            {
+                //HTTP 422 (UNPROCESSABLE CONTENT)
+                return StatusCode(422, new { message = e.Message });
+            }
+            catch (Exception e)
+            {
+                //HTTP 500 (INTERNAL SERVER ERROR)
+                return StatusCode(500, new { message = e.Message });
+            }
         }
         
         [HttpGet]
         [ProducesResponseType(typeof(GenerosGetResponseModel), 200)]
         public IActionResult GetAll()
         {
-            return Ok();
+            try
+            {
+                //consultar todas os  generos
+                var generos = _generoDomainService.ConsultarTodos();
+
+                //verificar se nenhum genero foi encontrado
+                if (!generos.Any())
+                    return StatusCode(204);
+
+                //objeto para retornar os dados da resposta
+                var response = _mapper.Map<List<GenerosGetResponseModel>>(generos);
+                return StatusCode(200, response);
+            }
+            catch (Exception e)
+            {
+                //HTTP 500 (INTERNAL SERVER ERROR)
+                return StatusCode(500, new { message = e.Message });
+            }
         }
 
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(List<GenerosGetResponseModel>), 200)]
         public IActionResult GetById(Guid id)
         {
-            return Ok();
+            try
+            {
+                //consultar 1 genero baseado no ID
+                var genero = _generoDomainService.ConsultarPorId(id);
+
+                //verificar se o genero não foi encontrado
+                if (genero == null)
+                    return StatusCode(204);
+
+                //objeto para retornar os dados da resposta
+                var response = _mapper.Map<GenerosGetResponseModel>(genero);
+                return StatusCode(200, response);
+            }
+            catch (Exception e)
+            {
+                //HTTP 500 (INTERNAL SERVER ERROR)
+                return StatusCode(500, new { message = e.Message });
+            }
         }
     }
 }

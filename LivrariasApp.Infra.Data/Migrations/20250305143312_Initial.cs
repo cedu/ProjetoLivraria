@@ -16,7 +16,9 @@ namespace LivrariasApp.Infra.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Nome = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
+                    Nome = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    CadastradoEm = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UltimaAtualizacaoEm = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -28,7 +30,9 @@ namespace LivrariasApp.Infra.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Nome = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
+                    Nome = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    CadastradoEm = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UltimaAtualizacaoEm = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -42,9 +46,11 @@ namespace LivrariasApp.Infra.Data.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     NOME = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     EMAIL = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    SENHA = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    SENHA = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     DATANASCIMENTO = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ISADMIN = table.Column<bool>(type: "bit", nullable: false)
+                    ISADMIN = table.Column<bool>(type: "bit", nullable: false),
+                    CadastradoEm = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UltimaAtualizacaoEm = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -56,11 +62,13 @@ namespace LivrariasApp.Infra.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Titulo = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    TITULO = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     ISBN = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    Autor = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    Sinopse = table.Column<string>(type: "nvarchar(max)", maxLength: 5000, nullable: true),
-                    CaminhoImagem = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    AUTOR = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    SINOPSE = table.Column<string>(type: "nvarchar(max)", maxLength: 5000, nullable: true),
+                    CAMINHOIMAGEM = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    CADASTRADOEM = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ULTIMAATUALIZACAOEM = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UsuarioId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     GeneroId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     EditoraId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
